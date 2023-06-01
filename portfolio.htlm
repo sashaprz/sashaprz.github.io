@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>Pivot &mdash; Website Template by Colorlib</title>
+    <title>Portfolio</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -28,7 +28,7 @@
     <header role="banner">
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
-          <a class="navbar-brand position-absolute" href="index.html">Pivot</a>
+          <a class="navbar-brand position-absolute" href="index.html">Sasha</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample05" aria-controls="navbarsExample05" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -49,10 +49,7 @@
 
               </li>
               <li class="nav-item">
-                <a class="nav-link active" href="works.html">Projects</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="news.html">News</a>
+                <a class="nav-link active" href="works.html">Portfolio</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="about.html">About</a>
@@ -62,7 +59,7 @@
               </li>
               <li class="nav-item cta-btn2">
                 <a class="nav-link" href="get-quote.html">
-                  <span class="d-inline-block px-4 py-2 border">Quotation</span>
+                  <span class="d-inline-block px-4 py-2 border">Newsletter</span>
                 </a>
               </li>
             </ul>
@@ -78,7 +75,7 @@
         <div class="container">
           <div class="row slider-text align-items-center justify-content-center text-center">
             <div class="col-md-7 col-sm-12 element-animate">
-              <h1>Our Works in 15 Years</h1>
+              <h1>Portfoilo</h1>
             </div>
           </div>
         </div>
