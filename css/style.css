@@ -27,8 +27,8 @@ h1, h2, h3, h4, h5 {
   color: #fff;
   border-width: 2px; }
   .btn.btn-primary:hover, .btn.btn-primary:active, .btn.btn-primary:focus {
-    border-color: #3395ff;
-    background: #3395ff; }
+    border-color: #9FE7BD;
+    background: #9FE7BD; }
 
 .btn.btn-sm {
   font-size: 12px; }
