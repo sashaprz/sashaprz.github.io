@@ -64,7 +64,7 @@ header {
     position: relative;
     z-index: 7; }
     header .navbar-brand span {
-      color: #007bff; }
+      color: #9FE7BD; }
     @media (max-width: 991.98px) {
       header .navbar-brand {
         position: relative !important; } }
@@ -140,7 +140,7 @@ header {
       position: relative;
       margin-top: -10px; }
       header .navbar .dropdown-menu .dropdown-item:hover {
-        background: #007bff;
+        background: #9FE7BD;
         color: #fff; }
       header .navbar .dropdown-menu .dropdown-item.active {
         background: #007bff;
@@ -149,7 +149,7 @@ header {
         padding-top: 7px;
         padding-bottom: 7px; }
     header .navbar .cta-btn a {
-      background: #007bff;
+      background: #9FE7BD;
       color: #000 !important;
       padding-left: 20px !important;
       padding-right: 20px !important;
@@ -189,7 +189,7 @@ header {
 
 .custom-icon {
   font-size: 70px;
-  color: #007bff; }
+  color: #9FE7BD; }
 
 /* Owl Carousel */
 .owl-carousel .owl-item {
@@ -497,9 +497,9 @@ header {
   .site-footer p:last-child {
     margin-bottom: 0; }
   .site-footer a {
-    color: #007bff; }
+    color: #9FE7BD; }
     .site-footer a:hover {
-      color: #007bff; }
+      color: #9FE7BD; }
   .site-footer h3 {
     font-size: 15px;
     margin-bottom: 20px; }
