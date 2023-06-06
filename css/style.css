@@ -99,7 +99,7 @@ header {
               padding-right: 10px;
               width: inherit; } }
           header .top-bar .social li a:hover {
-            background: #17a2b8;
+            background: #9FE7BD;
             color: #fff;
             -webkit-box-shadow: 2px 0 20px 0 rgba(0, 0, 0, 0.1);
             box-shadow: 2px 0 20px 0 rgba(0, 0, 0, 0.1); }
@@ -143,7 +143,7 @@ header {
         background: #9FE7BD;
         color: #fff; }
       header .navbar .dropdown-menu .dropdown-item.active {
-        background: #007bff;
+        background: #9FE7BD;
         color: #fff; }
       header .navbar .dropdown-menu a {
         padding-top: 7px;
@@ -170,7 +170,7 @@ header {
   position: relative;
   z-index: 100; }
   .cta-overlap .text {
-    background: #007bff;
+    background: 9FE7BD;
     padding: 3em 2em;
     -webkit-box-shadow: 0 1px 30px -4px rgba(0, 0, 0, 0.2);
     box-shadow: 0 1px 30px -4px rgba(0, 0, 0, 0.2); }
@@ -230,7 +230,7 @@ header {
     border-radius: 50%;
     background: #e6e6e6; }
     .owl-carousel .owl-dots .owl-dot.active {
-      background: #007bff; }
+      background: 9FE7BD; }
 
 .owl-carousel.home-slider {
   z-index: 1;
@@ -347,7 +347,7 @@ header {
   padding: 7em 0; }
 
 .cta-link {
-  background: #007bff;
+  background: 9FE7BD;
   padding: 3.5em 0 3em 0;
   display: block;
   text-align: center; }
@@ -425,7 +425,7 @@ header {
   font-size: 15px; }
   .media-feature .icon {
     font-size: 60px;
-    color: #007bff; }
+    color:  9FE7BD; }
   .media-feature h3 {
     font-size: 16px;
     text-transform: uppercase; }
