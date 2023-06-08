@@ -4,7 +4,7 @@ body {
   font-weight: 300;
   font-size: 16px;
   line-height: 1.8;
-  color: #2FC33A; }
+  color: #495057; }
 
 a {
   -webkit-transition: .3s all ease;
@@ -24,7 +24,7 @@ h1, h2, h3, h4, h5 {
   box-shadow: none !important; }
 
 .btn.btn-primary {
-  color: #fff;
+  color: #2FC33A;
   border-width: 2px; }
   .btn.btn-primary:hover, .btn.btn-primary:active, .btn.btn-primary:focus {
     border-color: #2FC33A;
@@ -449,7 +449,7 @@ header {
     font-size: 13px;
     text-transform: uppercase; }
   .media-custom .meta-chat {
-    color: #2FC33A; }
+    color: #495057; }
     .media-custom .meta-chat:hover {
       color: #2FC33A; }
   .media-custom:focus, .media-custom:hover {
