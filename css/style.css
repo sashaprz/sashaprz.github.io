@@ -24,11 +24,11 @@ h1, h2, h3, h4, h5 {
   box-shadow: none !important; }
 
 .btn.btn-primary {
-  color: #2FC33A;
+  color: #fff;
   border-width: 2px; }
   .btn.btn-primary:hover, .btn.btn-primary:active, .btn.btn-primary:focus {
     border-color: #fff;
-    background: #fff; }
+    background: #2FC33A; }
 
 .btn.btn-sm {
   font-size: 12px; }
@@ -64,7 +64,7 @@ header {
     position: relative;
     z-index: 7; }
     header .navbar-brand span {
-      color: ##2FC33A; }
+      color: #2FC33A; }
     @media (max-width: 991.98px) {
       header .navbar-brand {
         position: relative !important; } }
@@ -100,7 +100,7 @@ header {
               width: inherit; } }
           header .top-bar .social li a:hover {
             background: #2FC33A;
-            color: #fff;
+            color: #2FC33A;
             -webkit-box-shadow: 2px 0 20px 0 rgba(0, 0, 0, 0.1);
             box-shadow: 2px 0 20px 0 rgba(0, 0, 0, 0.1); }
   header .navbar {
@@ -129,7 +129,7 @@ header {
         header .navbar .nav-link {
           padding: 0.5rem 0rem !important; } }
       header .navbar .nav-link.active {
-        color: #007bff !important; }
+        color: #2FC33A !important; }
     header .navbar .dropdown-menu {
       font-size: 14px;
       border-radius: 0px;
@@ -228,9 +228,9 @@ header {
     height: 10px;
     margin: 5px;
     border-radius: 50%;
-    background: #2FC33A; }
+    background: #001933; }
     .owl-carousel .owl-dots .owl-dot.active {
-      background: 9FE7BD; }
+      background: #fff; }
 
 .owl-carousel.home-slider {
   z-index: 1;
@@ -314,10 +314,10 @@ header {
   transition: .3s all ease;
   color: #2FC33A7; }
   .owl-carousel.major-caousel .owl-nav .owl-prev:hover, .owl-carousel.major-caousel .owl-nav .owl-prev:focus, .owl-carousel.major-caousel .owl-nav .owl-next:hover, .owl-carousel.major-caousel .owl-nav .owl-next:focus {
-    color: #2FC33A;
+    color: #001933;
     outline: none; }
   .owl-carousel.major-caousel .owl-nav .owl-prev.disabled, .owl-carousel.major-caousel .owl-nav .owl-next.disabled {
-    color: #2FC33A; }
+    color: d; }
 
 .owl-carousel.major-caousel .owl-nav .owl-prev {
   left: -60px !important; }
