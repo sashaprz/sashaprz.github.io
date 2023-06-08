@@ -361,7 +361,7 @@ header {
     font-size: 20px; }
   .cta-link .heading {
     font-size: 50px;
-    color: #2FC33A; }
+    color: #001933; }
     @media (max-width: 991.98px) {
       .cta-link .heading {
         font-size: 30px; } }
@@ -445,11 +445,11 @@ header {
   transition: .3s all ease;
   margin-bottom: 30px; }
   .media-custom .meta-post {
-    color: #2FC33A;
+    color: #001933;
     font-size: 13px;
     text-transform: uppercase; }
   .media-custom .meta-chat {
-    color: #495057; }
+    color: #001933; }
     .media-custom .meta-chat:hover {
       color: #2FC33A; }
   .media-custom:focus, .media-custom:hover {
