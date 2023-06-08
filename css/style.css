@@ -27,15 +27,15 @@ h1, h2, h3, h4, h5 {
   color: #2FC33A;
   border-width: 2px; }
   .btn.btn-primary:hover, .btn.btn-primary:active, .btn.btn-primary:focus {
-    border-color: #2FC33A;
-    background: #2FC33A; }
+    border-color: #fff;
+    background: #fff; }
 
 .btn.btn-sm {
   font-size: 12px; }
 
 .btn.btn-outline-primary {
   border-width: 2px;
-  color: #2FC33A; }
+  color: #fff; }
   .btn.btn-outline-primary:hover, .btn.btn-outline-primary:focus, .btn.btn-outline-primary:active {
     color: #fff; }
 
