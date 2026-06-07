@@ -99,7 +99,7 @@
     padding:0 6vw 36px;position:relative;z-index:5}
 
   /* ---- transition between zones ---- */
-  .transition{text-align:center;font-family:"Caveat",cursive;font-size:30px;color:var(--ink-soft);padding:48px 0 8px}
+  .transition{text-align:center;font-family:"Caveat",cursive;font-size:30px;color:var(--ink-soft);padding:88px 0 8px}
   .transition span{color:var(--sage)}
 
   .hint{font-family:"Caveat",cursive;font-weight:700;font-size:22px;color:var(--sage);
@@ -252,7 +252,7 @@
       <div class="shot"><span class="tagk">controls</span><img src="assets/soc.jpg" alt="state-of-charge estimation plot" loading="lazy"></div>
       <div class="body">
         <div class="ttl">EKF to estimate battery state-of-charge <span class="yr">'24</span></div>
-        <div class="hard">SoC isn't directly measurable and voltage is nonlinear + noisy. <b>The hard part:</b> ran an Extended Kalman Filter over an equivalent-circuit model on an 8-bit Arduino.</div>
+        <div class="hard">SOC isn't directly measureable, and voltage is noisy. An EKF uses a mathematical model of the battery, plus the voltage measurments, to return the most accurate SOC esitmation. I built my own equivalent circuit model, did a pulse discharge test, and built my own SOC-OCV curve. All with an Arduino and an 18650 LFP cell!</div>
         <div class="stat">nonlinear estimation, on-device</div>
         <div class="cta">
           <a class="btn play" href="https://youtu.be/EO3NNHc-09Y?si=TLiLmfUXTrCcwH-W" target="_blank" rel="noopener">▶ build video</a>
@@ -267,7 +267,7 @@
       <div class="shot"><span class="tagk">mechatronics</span><img src="assets/rccar.jpg" alt="scratch-built RC car" loading="lazy"></div>
       <div class="body">
         <div class="ttl">Remote control car <span class="yr">'25</span></div>
-        <div class="hard">No kit. <b>The hard part:</b> custom suspension, steering, chassis, drivetrain, plus a battery pack made from AA batteries, electrical tape, and tinfoil.</div>
+        <div class="hard">No kit. Built the steering, suspension, and drivetrain myself. Also made a super sketchy battery pack from tinfoil, AA batteries, and electrical tape. Biggest thing I learned was how massive a constraint the battery is.</div>
         <div class="stat">full vehicle → driving, ground up</div>
         <div class="cta">
           <a class="btn play" href="https://youtu.be/xFO3a2VqeCU?si=95ycC5EH3ngbxpB2" target="_blank" rel="noopener">▶ build video</a>
@@ -277,6 +277,8 @@
 
   </div>
 </section>
+
+<div class="transition">…and the rest of <span>me</span> ↓</div>
 
 <!-- ============ ZONE 2 — adventures ============ -->
 <div class="zonelabel"><span class="n">02</span> adventures</div>
