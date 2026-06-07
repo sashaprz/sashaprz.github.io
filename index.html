@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>sasha przybylski — board</title>
-<meta name="description" content="Sasha Przybylski — eng sci @ uoft, Matter Lab. Controls, energy, ML for materials. Projects, a cat, a race time, a podcast.">
+<title>sasha przybylski</title>
+<meta name="description" content="Sasha Przybylski — eng sci @ uoft, research at Matter Lab. Batteries, control systems, ML for materials. Projects, a cat, and a race time.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -51,8 +51,12 @@
   }
   .name{font-family:"Caveat",cursive;font-size:clamp(40px,6vw,66px);font-weight:700;line-height:.85}
   .name .dot{color:var(--sage)}
-  .narr{font-size:13px;color:var(--ink-soft);max-width:52ch;line-height:1.65;margin-top:14px}
+  .narr{font-size:13px;color:var(--ink-soft);max-width:52ch;line-height:1.65;margin-top:26px}
   .narr b{color:var(--ink)}
+  .facts{list-style:none;margin:26px 0 0;padding:0;font-size:13px;color:var(--ink-soft);line-height:1.9}
+  .facts li{padding-left:18px;position:relative}
+  .facts li::before{content:"–";position:absolute;left:0;color:var(--sage)}
+  .facts b{color:var(--ink)}
   .ask{font-size:12.5px;color:var(--sage);font-weight:600;margin-top:10px}
   .links{font-size:12.5px;text-align:right;line-height:2;color:var(--ink-soft);white-space:nowrap}
   .links a{color:var(--sage);font-weight:700;text-decoration:none;border-bottom:1px dotted var(--sage)}
@@ -64,7 +68,7 @@
   .zonelabel::after{content:"";flex:1;height:1px;background:var(--ink-soft);opacity:.3}
   .zonelabel .n{color:var(--sage);font-weight:700}
 
-  /* ---- ZONE 1 — the work (large project cards) ---- */
+  /* ---- ZONE 1 — past projects (large project cards) ---- */
   .work{max-width:1180px;margin:20px auto 0;padding:0 6vw;position:relative;z-index:5}
   .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
   .proj{background:var(--card);border:1.5px solid var(--ink);box-shadow:5px 6px 0 var(--shadow);
@@ -209,9 +213,9 @@
 
 <header>
   <div>
-    <div class="name">sasha przybylski<span class="dot">.</span></div>
+    <div class="name">hi i'm sasha <span class="dot">:)</span></div>
     <!-- rewrite this in your own voice anytime -->
-    <div class="narr">EngSci @ <b>UofT</b>, researching at <b>Matter Lab</b>. I build things that estimate what you can't directly measure — batteries, controls, ML for materials. Started with cardboard at 7; currently writing <b>QM/MM tooling</b> on the Mariana cluster.</div>
+    <div class="narr">i build batteries, write control systems, and train ml models that beat published benchmarks. rn i'm researching at <b>matter lab</b> and building a bms from scratch!</div>
   </div>
   <div class="links">
     <a href="https://www.youtube.com/@sashaprzybylski/videos" target="_blank" rel="noopener">youtube ↗</a><br>
@@ -222,8 +226,8 @@
   </div>
 </header>
 
-<!-- ============ ZONE 1 — the work ============ -->
-<div class="zonelabel"><span class="n">01</span> the work</div>
+<!-- ============ ZONE 1 — projects ============ -->
+<div class="zonelabel"><span class="n">01</span> projects</div>
 <section class="work">
   <div class="grid">
 
@@ -234,7 +238,7 @@
       <div class="body">
         <div class="ttl">BREED 2.0 — ML for solid-state electrolytes <span class="yr">'25</span></div>
         <div class="hard">DFT screening of electrolytes is brutally slow. <b>The hard part:</b> predicting ionic conductivity from composition alone, with almost no labelled data. Built a gradient-boosted model + genetic algorithm to search the candidate space.</div>
-        <div class="stat">MAE ≈ 0.94 (log σ) on 829 samples<br>beats the published OBELiX RF baseline by 26–38%</div>
+        <div class="stat">MAE ≈ 0.94 (log σ) on 829 samples<br>beats the published Obelix RF baseline by 36%</div>
         <div class="cta">
           <a class="btn" href="https://github.com/sashaprz/breed-2.0" target="_blank" rel="noopener">&lt;/&gt; code</a>
           <a class="btn" href="https://www.notion.so/sashaprz/BREED-Battery-Research-via-Evolutionary-Electrolyte-Design-256340b75472806aa0acd1900278998b" target="_blank" rel="noopener">writeup</a>
@@ -248,8 +252,8 @@
       <div class="shot"><span class="tagk">controls</span><img src="assets/soc.jpg" alt="state-of-charge estimation plot" loading="lazy"></div>
       <div class="body">
         <div class="ttl">EKF to estimate battery state-of-charge <span class="yr">'24</span></div>
-        <div class="hard">SoC isn't directly measurable and voltage is nonlinear + noisy. <b>The hard part:</b> ran an Extended Kalman Filter over an equivalent-circuit model — in real time, on an 8-bit Arduino.</div>
-        <div class="stat">real-time nonlinear estimation, on-device</div>
+        <div class="hard">SoC isn't directly measurable and voltage is nonlinear + noisy. <b>The hard part:</b> ran an Extended Kalman Filter over an equivalent-circuit model on an 8-bit Arduino.</div>
+        <div class="stat">nonlinear estimation, on-device</div>
         <div class="cta">
           <a class="btn play" href="https://youtu.be/EO3NNHc-09Y?si=TLiLmfUXTrCcwH-W" target="_blank" rel="noopener">▶ build video</a>
           <a class="btn" href="https://github.com/sashaprz/Estimating-Battery-SOC-with-an-Extended-Kalman-Filter" target="_blank" rel="noopener">&lt;/&gt; code</a>
@@ -263,7 +267,7 @@
       <div class="shot"><span class="tagk">mechatronics</span><img src="assets/rccar.jpg" alt="scratch-built RC car" loading="lazy"></div>
       <div class="body">
         <div class="ttl">Remote control car <span class="yr">'25</span></div>
-        <div class="hard">No kit. <b>The hard part:</b> designed + machined custom suspension geometry, built the chassis, drove the motors with a hand-built H-bridge, 3D-printed the parts.</div>
+        <div class="hard">No kit. <b>The hard part:</b> custom suspension, steering, chassis, drivetrain, plus a battery pack made from AA batteries, electrical tape, and tinfoil.</div>
         <div class="stat">full vehicle → driving, ground up</div>
         <div class="cta">
           <a class="btn play" href="https://youtu.be/xFO3a2VqeCU?si=95ycC5EH3ngbxpB2" target="_blank" rel="noopener">▶ build video</a>
@@ -276,9 +280,9 @@
 
 <div class="transition">…and the rest of <span>me</span> ↓</div>
 
-<!-- ============ ZONE 2 — the board ============ -->
-<div class="zonelabel"><span class="n">02</span> the board</div>
-<div class="hint">↓ everything I've made and half of who I am — hover the polaroids to flip, click any photo to zoom</div>
+<!-- ============ ZONE 2 — adventures ============ -->
+<div class="zonelabel"><span class="n">02</span> adventures</div>
+<div class="hint">↓ everything I've made and half of who I am — hover to flip . click to zoom</div>
 
 <div class="board-wrap">
   <div class="straps"><div class="strap"></div><div class="strap"></div></div>
@@ -360,7 +364,7 @@
       <div class="clip"></div>
       <div class="flip">
         <div class="pf"><div class="frame"><div class="ph"><img src="assets/printer.jpg" alt="3D printer running" loading="lazy"></div><div class="cap">the Bambu</div></div></div>
-        <div class="pf pb"><div class="frame"><div class="t">the Bambu</div><div class="b">got a $1517 Medici grant for this one — lots of fun. used for the RC car</div></div></div>
+        <div class="pf pb"><div class="frame"><div class="t">the Bambu</div><div class="b">got a 1517 Medici grant for this one — lots of fun. used for the RC car</div></div></div>
       </div>
     </div>
 
