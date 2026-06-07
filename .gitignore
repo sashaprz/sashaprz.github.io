@@ -1,0 +1,7 @@
+# local source photos / scratch — not part of the published site
+/not included/
+/*.jpg
+/*.jpeg
+/*.png
+.DS_Store
+Thumbs.db

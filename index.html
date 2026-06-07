@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>sasha przybylski — board</title>
+<meta name="description" content="Sasha Przybylski — eng sci @ uoft, Matter Lab. Controls, energy, ML for materials. Projects, a cat, a race time, a podcast.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --wall:#e9e6df;
+    --grout:#d8d3c8;
+    --wire:#1f1f1d;
+    --leather:#a9743f;
+    --leather-d:#8a5b2e;
+    --ink:#23231f;
+    --ink-soft:#5b594f;
+    --sage:#83a557;   /* accent */
+    --sage-bright:#92b466;
+    --teal:#1c7a6b;
+    --shadow:rgba(35,33,25,.30);
+    --card:#fcf9f1;
+    --pw:188px;   /* polaroid width  */
+    --ph:236px;   /* polaroid height */
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:"IBM Plex Mono",monospace;color:var(--ink);
+    min-height:100vh;
+    background-color:var(--wall);
+    background-image:
+      linear-gradient(var(--grout) 2px,transparent 2px),
+      linear-gradient(90deg,var(--grout) 2px,transparent 2px);
+    background-size:96px 42px;
+    background-position:0 0;
+    overflow-x:hidden;
+  }
+  body::after{ /* grain */
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:9999;
+    opacity:.045;mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  header{
+    max-width:1180px;margin:0 auto;
+    display:flex;justify-content:space-between;align-items:flex-end;
+    padding:40px 6vw 0;flex-wrap:wrap;gap:18px;position:relative;z-index:5;
+  }
+  .name{font-family:"Caveat",cursive;font-size:clamp(40px,6vw,66px);font-weight:700;line-height:.85}
+  .name .dot{color:var(--sage)}
+  .narr{font-size:13px;color:var(--ink-soft);max-width:52ch;line-height:1.65;margin-top:14px}
+  .narr b{color:var(--ink)}
+  .ask{font-size:12.5px;color:var(--sage);font-weight:600;margin-top:10px}
+  .links{font-size:12.5px;text-align:right;line-height:2;color:var(--ink-soft);white-space:nowrap}
+  .links a{color:var(--sage);font-weight:700;text-decoration:none;border-bottom:1px dotted var(--sage)}
+  .links a:hover{color:var(--sage-bright);border-color:var(--sage-bright)}
+
+  /* ---- zone labels ---- */
+  .zonelabel{max-width:1180px;margin:34px auto 0;padding:0 6vw;
+    display:flex;align-items:center;gap:14px;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--ink-soft)}
+  .zonelabel::after{content:"";flex:1;height:1px;background:var(--ink-soft);opacity:.3}
+  .zonelabel .n{color:var(--sage);font-weight:700}
+
+  /* ---- ZONE 1 — the work (large project cards) ---- */
+  .work{max-width:1180px;margin:20px auto 0;padding:0 6vw;position:relative;z-index:5}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .proj{background:var(--card);border:1.5px solid var(--ink);box-shadow:5px 6px 0 var(--shadow);
+    display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s;position:relative}
+  .cardlink{position:absolute;inset:0;z-index:1}
+  .proj:hover{transform:translate(-2px,-2px);box-shadow:8px 10px 0 var(--shadow)}
+  .shot{border-bottom:1.5px solid var(--ink);min-height:172px;position:relative;overflow:hidden;
+    background:repeating-linear-gradient(45deg,#e7e1d2,#e7e1d2 9px,#e2dccb 9px,#e2dccb 18px);
+    display:flex;align-items:center;justify-content:center;color:#9a917c;font-size:11px;letter-spacing:1px}
+  .shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+  .shot .tagk{position:absolute;top:10px;left:10px;z-index:2;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;
+    color:var(--sage);font-weight:700;background:var(--card);padding:3px 7px;border:1px solid var(--ink)}
+  .body{padding:18px 18px 16px;display:flex;flex-direction:column;gap:9px;flex:1}
+  .ttl{font-size:16px;font-weight:700;line-height:1.15}
+  .ttl .yr{color:var(--ink-soft);font-weight:400;font-size:12px}
+  .hard{font-size:11px;color:var(--ink-soft);line-height:1.55}
+  .hard b{color:var(--ink)}
+  .stat{font-family:"IBM Plex Mono",monospace;font-weight:700;font-size:13px;color:var(--sage);line-height:1.3;
+    border-left:3px solid var(--sage);padding-left:10px;margin-top:2px}
+  .cta{display:flex;gap:8px;flex-wrap:wrap;margin-top:auto;padding-top:6px;position:relative;z-index:2}
+  .btn{font-size:10.5px;font-weight:600;text-decoration:none;padding:6px 11px;border:1.5px solid var(--ink);
+    transition:.15s;display:inline-flex;align-items:center;gap:5px;color:var(--ink)}
+  .btn.play{background:var(--sage);border-color:var(--sage);color:#fff}
+  .btn.play:hover{background:var(--sage-bright)}
+  .btn:hover{background:var(--ink);color:var(--card)}
+
+  .foot{text-align:center;font-size:11px;letter-spacing:1px;color:var(--ink-soft);
+    padding:0 6vw 36px;position:relative;z-index:5}
+
+  /* ---- transition between zones ---- */
+  .transition{text-align:center;font-family:"Caveat",cursive;font-size:30px;color:var(--ink-soft);padding:48px 0 8px}
+  .transition span{color:var(--sage)}
+
+  .hint{font-family:"Caveat",cursive;font-weight:700;font-size:22px;color:var(--sage);
+    max-width:1180px;margin:6px auto 0;padding:0 6vw;position:relative;z-index:5}
+
+  /* ---- the wire board ---- */
+  .board-wrap{position:relative;padding:26px 4vw 70px;}
+  .straps{display:flex;justify-content:center;gap:min(46vw,560px);margin-bottom:-14px;position:relative;z-index:6}
+  .strap{width:30px;height:46px;background:linear-gradient(var(--leather),var(--leather-d));
+    border-radius:6px 6px 3px 3px;box-shadow:1px 2px 4px var(--shadow);position:relative}
+  .strap::after{content:"";position:absolute;left:50%;bottom:7px;width:7px;height:7px;border-radius:50%;
+    background:#4a3318;transform:translateX(-50%);box-shadow:0 -16px 0 #4a3318}
+
+  .board{
+    position:relative;width:min(1180px,92vw);margin:0 auto;
+    border:5px solid var(--wire);border-radius:4px;
+    background-image:
+      linear-gradient(var(--wire) 1.5px,transparent 1.5px),
+      linear-gradient(90deg,var(--wire) 1.5px,transparent 1.5px);
+    background-size:44px 44px;
+    box-shadow:8px 12px 26px var(--shadow);
+    display:flex;flex-wrap:wrap;justify-content:center;align-items:flex-start;
+    gap:20px 18px;padding:34px 26px 40px;
+  }
+
+  /* every pinned item is the same-size polaroid */
+  .item{
+    position:relative;width:var(--pw);height:var(--ph);
+    z-index:2;cursor:pointer;
+    transform:rotate(var(--rot,0deg));
+    transition:transform .3s cubic-bezier(.2,.8,.2,1),filter .3s;
+    filter:drop-shadow(3px 5px 7px var(--shadow));
+  }
+  .item:hover{transform:rotate(0deg) scale(1.06) translateY(-6px);z-index:60;
+    filter:drop-shadow(6px 11px 16px var(--shadow))}
+  /* mini clothespin */
+  .clip{position:absolute;top:-14px;left:50%;transform:translateX(-50%);
+    width:15px;height:28px;background:linear-gradient(#e4c98f,#caa765);
+    border-radius:3px;z-index:70;box-shadow:0 1px 2px var(--shadow)}
+  .clip::after{content:"";position:absolute;top:10px;left:50%;transform:translateX(-50%);
+    width:5px;height:5px;border-radius:50%;background:#8a6a35}
+
+  /* shared white polaroid frame */
+  .frame{width:100%;height:100%;background:var(--card);padding:11px 11px 0;
+    display:flex;flex-direction:column}
+  .frame .ph{flex:1;overflow:hidden;border:1px solid #ddd5c2;
+    background:repeating-linear-gradient(45deg,#e7e1d2,#e7e1d2 8px,#e2dccb 8px,#e2dccb 16px);
+    display:flex;align-items:center;justify-content:center}
+  .frame .ph img{width:100%;height:100%;object-fit:cover;display:block}
+  .frame .cap{font-family:"Caveat",cursive;font-size:21px;font-weight:600;text-align:center;
+    padding:8px 4px;min-height:50px;display:flex;align-items:center;justify-content:center;line-height:.95}
+  .frame .yr{position:absolute;bottom:9px;right:12px;font-size:11px;color:var(--sage);font-weight:700}
+
+  /* ---- project polaroids flip ---- */
+  .poke{perspective:1000px;background:none;filter:none}
+  .flip{position:relative;width:100%;height:100%;transform-style:preserve-3d;
+    transition:transform .55s cubic-bezier(.4,.1,.2,1)}
+  .item:hover .flip,.item.flipped .flip{transform:rotateY(180deg)}
+  .pf{position:absolute;inset:0;backface-visibility:hidden}
+  .pb{transform:rotateY(180deg)}
+  .pb .frame{background:var(--ink);color:var(--card);padding:14px 13px;gap:7px;justify-content:flex-start}
+  .pb .t{font-family:"Caveat",cursive;font-size:21px;color:#fff;border-bottom:1px solid rgba(255,255,255,.2);padding-bottom:6px}
+  .pb .b{font-size:10.5px;line-height:1.55;color:#d9d4c5}
+  .pb .tg{font-size:9px;color:#5fc9b8;letter-spacing:.5px}
+  .pb .s{margin-top:auto;font-size:10.5px;color:var(--sage);font-weight:700;border-top:1px solid rgba(255,255,255,.15);padding-top:6px}
+  .pb .vid{margin-top:2px;display:block;position:relative;text-decoration:none}
+  .pb .vid img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:2px;display:block;filter:brightness(.8)}
+  .pb .vid .play{position:absolute;inset:6px 0 0;display:flex;align-items:center;justify-content:center;
+    pointer-events:none}
+  .pb .vid .play span{display:flex;align-items:center;justify-content:center;
+    width:30px;height:30px;border-radius:50%;background:rgba(0,0,0,.45);border:1.5px solid #fff;
+    color:#fff;font-size:11px;text-shadow:0 1px 4px rgba(0,0,0,.6)}
+
+  /* show the whole photo (no crop) for wide/odd shots */
+  .item.fit-contain .frame .ph{background:#14130f}
+  .item.fit-contain .frame .ph img{object-fit:contain}
+
+  /* ---- the one note card (currently) ---- */
+  .note .frame{background:#f3e487;padding:14px 14px}
+  .note .h{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:#8a5b2e;
+    border-bottom:1px solid rgba(138,91,46,.3);padding-bottom:5px;margin-bottom:9px}
+  .note .l{font-family:"Caveat",cursive;font-size:23px;line-height:1.02;color:#3a3522}
+
+  /* ---- lightbox ---- */
+  .lb{position:fixed;inset:0;z-index:10000;display:none;align-items:center;justify-content:center;
+    background:rgba(20,19,15,.86);padding:5vh 5vw;cursor:zoom-out;
+    -webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px)}
+  .lb.open{display:flex}
+  .lb figure{max-width:min(880px,92vw);max-height:90vh;display:flex;flex-direction:column;
+    background:var(--card);padding:14px 14px 0;box-shadow:0 18px 50px rgba(0,0,0,.5);transform:rotate(-1.2deg)}
+  .lb img{max-width:100%;max-height:78vh;object-fit:contain;display:block;border:1px solid #ddd5c2}
+  .lb figcaption{font-family:"Caveat",cursive;font-size:26px;text-align:center;padding:10px 4px 16px;color:var(--ink);min-height:20px}
+  .lb .x{position:fixed;top:18px;right:24px;color:#fff;font-size:30px;font-family:"IBM Plex Mono",monospace;
+    background:none;border:none;cursor:pointer;line-height:1;opacity:.8}
+  .lb .x:hover{opacity:1;color:var(--sage)}
+
+  @media(max-width:780px){
+    :root{--pw:150px;--ph:190px}
+    .frame .cap{font-size:17px;min-height:42px}
+    .links{text-align:left;white-space:normal}
+    .straps{gap:60vw}
+    .grid{grid-template-columns:1fr}
+    header{align-items:flex-start}
+  }
+  @media(max-width:430px){
+    :root{--pw:140px;--ph:178px}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <div class="name">sasha przybylski<span class="dot">.</span></div>
+    <!-- rewrite this in your own voice anytime -->
+    <div class="narr">EngSci @ <b>UofT</b>, researching at <b>Matter Lab</b>. I build things that estimate what you can't directly measure — batteries, controls, ML for materials. Started with cardboard at 7; currently writing <b>QM/MM tooling</b> on the Mariana cluster.</div>
+  </div>
+  <div class="links">
+    <a href="https://www.youtube.com/@sashaprzybylski/videos" target="_blank" rel="noopener">youtube ↗</a><br>
+    <a href="https://github.com/sashaprz" target="_blank" rel="noopener">github ↗</a><br>
+    <a href="https://x.com/sashaprzybylski" target="_blank" rel="noopener">twitter ↗</a><br>
+    <a href="https://www.linkedin.com/in/sasha-przybylski/" target="_blank" rel="noopener">linkedin ↗</a><br>
+    <a href="mailto:sasha.przybylski23@gmail.com">contact ↗</a>
+  </div>
+</header>
+
+<!-- ============ ZONE 1 — the work ============ -->
+<div class="zonelabel"><span class="n">01</span> the work</div>
+<section class="work">
+  <div class="grid">
+
+    <!-- BREED 2.0 -->
+    <div class="proj">
+      <a class="cardlink" href="https://github.com/sashaprz/breed-2.0" target="_blank" rel="noopener" aria-label="BREED 2.0 on GitHub"></a>
+      <div class="shot"><span class="tagk">ml · materials</span><img src="assets/breed.jpg" alt="ionic conductivity research desk" loading="lazy"></div>
+      <div class="body">
+        <div class="ttl">BREED 2.0 — ML for solid-state electrolytes <span class="yr">'25</span></div>
+        <div class="hard">DFT screening of electrolytes is brutally slow. <b>The hard part:</b> predicting ionic conductivity from composition alone, with almost no labelled data. Built a gradient-boosted model + genetic algorithm to search the candidate space.</div>
+        <div class="stat">MAE ≈ 0.94 (log σ) on 829 samples<br>beats the published OBELiX RF baseline by 26–38%</div>
+        <div class="cta">
+          <a class="btn" href="https://github.com/sashaprz/breed-2.0" target="_blank" rel="noopener">&lt;/&gt; code</a>
+          <a class="btn" href="https://www.notion.so/sashaprz/BREED-Battery-Research-via-Evolutionary-Electrolyte-Design-256340b75472806aa0acd1900278998b" target="_blank" rel="noopener">writeup</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- EKF state-of-charge estimator -->
+    <div class="proj">
+      <a class="cardlink" href="https://youtu.be/EO3NNHc-09Y?si=TLiLmfUXTrCcwH-W" target="_blank" rel="noopener" aria-label="EKF build video"></a>
+      <div class="shot"><span class="tagk">controls</span><img src="assets/soc.jpg" alt="state-of-charge estimation plot" loading="lazy"></div>
+      <div class="body">
+        <div class="ttl">EKF to estimate battery state-of-charge <span class="yr">'24</span></div>
+        <div class="hard">SoC isn't directly measurable and voltage is nonlinear + noisy. <b>The hard part:</b> ran an Extended Kalman Filter over an equivalent-circuit model — in real time, on an 8-bit Arduino.</div>
+        <div class="stat">real-time nonlinear estimation, on-device</div>
+        <div class="cta">
+          <a class="btn play" href="https://youtu.be/EO3NNHc-09Y?si=TLiLmfUXTrCcwH-W" target="_blank" rel="noopener">▶ build video</a>
+          <a class="btn" href="https://github.com/sashaprz/Estimating-Battery-SOC-with-an-Extended-Kalman-Filter" target="_blank" rel="noopener">&lt;/&gt; code</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- RC car -->
+    <div class="proj">
+      <a class="cardlink" href="https://youtu.be/xFO3a2VqeCU?si=95ycC5EH3ngbxpB2" target="_blank" rel="noopener" aria-label="RC car build video"></a>
+      <div class="shot"><span class="tagk">mechatronics</span><img src="assets/rccar.jpg" alt="scratch-built RC car" loading="lazy"></div>
+      <div class="body">
+        <div class="ttl">Remote control car <span class="yr">'25</span></div>
+        <div class="hard">No kit. <b>The hard part:</b> designed + machined custom suspension geometry, built the chassis, drove the motors with a hand-built H-bridge, 3D-printed the parts.</div>
+        <div class="stat">full vehicle → driving, ground up</div>
+        <div class="cta">
+          <a class="btn play" href="https://youtu.be/xFO3a2VqeCU?si=95ycC5EH3ngbxpB2" target="_blank" rel="noopener">▶ build video</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="transition">…and the rest of <span>me</span> ↓</div>
+
+<!-- ============ ZONE 2 — the board ============ -->
+<div class="zonelabel"><span class="n">02</span> the board</div>
+<div class="hint">↓ everything I've made and half of who I am — hover the polaroids to flip, click any photo to zoom</div>
+
+<div class="board-wrap">
+  <div class="straps"><div class="strap"></div><div class="strap"></div></div>
+
+  <div class="board">
+
+    <!-- 24V LFP pack -->
+    <div class="item poke" style="--rot:-2deg" data-full="assets/accumulator.jpg" data-cap="24V battery pack">
+      <div class="clip"></div>
+      <div class="flip">
+        <div class="pf"><div class="frame"><div class="ph"><img src="assets/accumulator.jpg" alt="24V battery pack" loading="lazy"></div><div class="cap">24V battery pack</div></div></div>
+        <div class="pf pb"><div class="frame"><div class="t">24V battery pack</div><div class="b">18650 cells<br>LFP chemistry<br>7s4p configuration</div><a class="vid" href="https://youtu.be/YhJW69A_1-M?si=bEvn6mlLKZv-vuqA" target="_blank" rel="noopener" onclick="event.stopPropagation()"><img src="https://img.youtube.com/vi/YhJW69A_1-M/hqdefault.jpg" alt="24V LFP pack build video thumbnail" loading="lazy"><div class="play"><span>▶</span></div></a></div></div>
+      </div>
+    </div>
+
+    <div class="item poke" style="--rot:2deg" data-full="assets/fr8.jpg" data-cap="FR8">
+      <div class="clip"></div>
+      <div class="flip">
+        <div class="pf"><div class="frame"><div class="ph"><img src="assets/fr8.jpg" alt="giving a talk" loading="lazy" style="object-position:86% center"></div><div class="cap">FR8</div></div></div>
+        <div class="pf pb"><div class="frame"><div class="t">FR8</div><div class="b">a 3 month <a href="https://fr8manifes.to/" target="_blank" rel="noopener" style="color:var(--sage-bright);font-weight:700;text-decoration:none;border-bottom:1px dotted var(--sage-bright)" onclick="event.stopPropagation()">hacker house</a> in Finland.</div><a class="vid" href="https://youtu.be/8c8Er32C0YE" target="_blank" rel="noopener" onclick="event.stopPropagation()"><img src="https://img.youtube.com/vi/8c8Er32C0YE/hqdefault.jpg" alt="FR8 video thumbnail" loading="lazy"><div class="play"><span>▶</span></div></a></div></div>
+      </div>
+    </div>
+
+    <!-- biking pov -->
+    <div class="item poke" style="--rot:-2deg" data-full="assets/biking-pov.jpg" data-cap="biking!">
+      <div class="clip"></div>
+      <div class="flip">
+        <div class="pf"><div class="frame"><div class="ph"><img src="assets/biking-pov.jpg" alt="mountain bike trail" loading="lazy"></div><div class="cap">biking!</div></div></div>
+        <div class="pf pb"><div class="frame"><div class="t">biking!</div><div class="b">its such a nice break + a great way to explore a new place</div></div></div>
+      </div>
+    </div>
+
+    <div class="item poke" style="--rot:2.5deg" data-full="assets/machining.jpg" data-cap="metal working">
+      <div class="clip"></div>
+      <div class="flip">
+        <div class="pf"><div class="frame"><div class="ph"><img src="assets/machining.jpg" alt="machined press tool" loading="lazy" style="object-position:center 32%"></div><div class="cap">metal working</div></div></div>
+        <div class="pf pb"><div class="frame"><div class="t">metal working</div><div class="b">for University of Toronto Formula Racing. learned how to use a band saw, mill, lathe, and more</div></div></div>
+      </div>
+    </div>
+
+    <!-- design fair -->
+    <div class="item poke" style="--rot:-1.5deg" data-full="assets/designfair.jpg" data-cap="UofT eng sci">
+      <div class="clip"></div>
+      <div class="flip">
+        <div class="pf"><div class="frame"><div class="ph"><img src="assets/designfair.jpg" alt="UofT eng sci design fair" loading="lazy"></div><div class="cap">UofT eng sci</div></div></div>
+        <div class="pf pb"><div class="frame"><div class="t">UofT eng sci</div><div class="b">our eng sci design fair — built a <a href="https://www.linkedin.com/posts/sasha-przybylski_built-a-fully-functional-gate-state-detection-activity-7452815862606139392-sfSo?utm_source=share&utm_medium=member_desktop&rcm=ACoAADlcMVEBAYasYSoPYePR7uUDBbmd-2b8Uc0" target="_blank" rel="noopener" style="color:var(--sage-bright);font-weight:700;text-decoration:none;border-bottom:1px dotted var(--sage-bright)" onclick="event.stopPropagation()">gate-state detection system</a> for a local daycare</div></div></div>
+      </div>
+    </div>
+
+    <!-- cardboard bridge -->
+    <div class="item poke" style="--rot:-2.5deg" data-full="assets/mozart-einstein.jpg" data-cap="physics">
+      <div class="clip"></div>
+      <div class="flip">
+        <div class="pf"><div class="frame"><div class="ph"><img src="assets/mozart-einstein.jpg" alt="physics" loading="lazy"></div><div class="cap">physics</div></div></div>
+        <div class="pf pb"><div class="frame"><div class="t">physics</div><div class="b">i like reading!!</div></div></div>
+      </div>
+    </div>
+
+    <!-- thermoelectric -->
+    <div class="item poke" style="--rot:-2deg" data-full="assets/thermoelectric.jpg" data-cap="thermoelectric generator">
+      <div class="clip"></div>
+      <div class="flip">
+        <div class="pf"><div class="frame"><div class="ph"><img src="assets/thermoelectric.jpg" alt="thermoelectric generator build — Peltier modules with a buck converter" loading="lazy"></div><div class="cap">thermoelectric generator</div></div></div>
+        <div class="pf pb"><div class="frame"><div class="t">thermoelectric generator</div><div class="b">generating electricity from candles and ice! here's the <a href="https://medium.com/@sasha_przybylski/harnessing-heat-building-a-thermoelectric-generator-cc3b4dc72074" target="_blank" rel="noopener" style="color:var(--sage-bright);font-weight:700;text-decoration:none;border-bottom:1px dotted var(--sage-bright)" onclick="event.stopPropagation()">science</a></div><a class="vid" href="https://youtu.be/HnimRZ4kT3A" target="_blank" rel="noopener" onclick="event.stopPropagation()"><img src="https://img.youtube.com/vi/HnimRZ4kT3A/hqdefault.jpg" alt="thermoelectric generator video thumbnail" loading="lazy"><div class="play"><span>▶</span></div></a></div></div>
+      </div>
+    </div>
+
+    <!-- breadboard -->
+    <div class="item poke" style="--rot:-2.5deg" data-full="assets/breadboard.jpg" data-cap="H-bridge">
+      <div class="clip"></div>
+      <div class="flip">
+        <div class="pf"><div class="frame"><div class="ph"><img src="assets/breadboard.jpg" alt="H-bridge on a breadboard" loading="lazy"></div><div class="cap">H-bridge</div></div></div>
+        <div class="pf pb"><div class="frame"><div class="t">H-bridge</div><div class="b">as part of my RC car</div><a class="vid" href="https://youtube.com/shorts/bw6Lpd3YWUk?si=Vh72OAA7m6BRj9FE" target="_blank" rel="noopener" onclick="event.stopPropagation()"><img src="https://img.youtube.com/vi/bw6Lpd3YWUk/hqdefault.jpg" alt="H-bridge video thumbnail" loading="lazy"><div class="play"><span>▶</span></div></a></div></div>
+      </div>
+    </div>
+
+    <!-- printer -->
+    <div class="item poke" style="--rot:-3deg" data-full="assets/printer.jpg" data-cap="the Bambu">
+      <div class="clip"></div>
+      <div class="flip">
+        <div class="pf"><div class="frame"><div class="ph"><img src="assets/printer.jpg" alt="3D printer running" loading="lazy"></div><div class="cap">the Bambu</div></div></div>
+        <div class="pf pb"><div class="frame"><div class="t">the Bambu</div><div class="b">got a $1517 Medici grant for this one — lots of fun. used for the RC car</div></div></div>
+      </div>
+    </div>
+
+    <div class="item poke" style="--rot:3deg" data-full="assets/mod_bike.jpg" data-cap="Arduino odometer">
+      <div class="clip"></div>
+      <div class="flip">
+        <div class="pf"><div class="frame"><div class="ph" style="background:#14130f"><img src="assets/mod_bike.jpg" alt="arduino wired onto a bike with computer screen" loading="lazy" style="object-position:62% center;transform:scale(.9)"></div><div class="cap">Arduino odometer</div></div></div>
+        <div class="pf pb"><div class="frame"><div class="t">Arduino odometer</div><div class="b">hooked up an Arduino to my bike to track distance when I biked indoors</div></div></div>
+      </div>
+    </div>
+    <div class="item poke" style="--rot:-1.5deg" data-full="assets/cross-country.jpg" data-cap="cross country">
+      <div class="clip"></div>
+      <div class="flip">
+        <div class="pf"><div class="frame"><div class="ph"><img src="assets/cross-country.jpg" alt="cross country running" loading="lazy"></div><div class="cap">cross country</div></div></div>
+        <div class="pf pb"><div class="frame"><div class="t">cross country</div><div class="b">ran cross country and track throughout elementary and high school<br>5k PR: 21:30</div></div></div>
+      </div>
+    </div>
+
+
+    <!-- robot -->
+    <div class="item poke" style="--rot:-2.5deg" data-full="assets/robot.jpg" data-cap="got to drive a robot in amsterdam">
+      <div class="clip"></div>
+      <div class="flip">
+        <div class="pf"><div class="frame"><div class="ph"><img src="assets/robot.jpg" alt="driving a robot in Amsterdam" loading="lazy"></div><div class="cap">drove amsterdam robot</div></div></div>
+        <div class="pf pb"><div class="frame"><div class="t">drove amsterdam robot</div><div class="b">was epic, very thankful i didn't crash lol</div></div></div>
+      </div>
+    </div>
+
+    <!-- skiing -->
+    <div class="item poke" style="--rot:2deg" data-full="assets/skiing.jpg" data-cap="St. Moritz">
+      <div class="clip"></div>
+      <div class="flip">
+        <div class="pf"><div class="frame"><div class="ph"><img src="assets/skiing.jpg" alt="skiing in the alps" loading="lazy"></div><div class="cap">St. Moritz</div></div></div>
+        <div class="pf pb"><div class="frame"><div class="t">St. Moritz</div><div class="b">mountains = very pretty + lots fun</div></div></div>
+      </div>
+    </div>
+
+    <!-- mozart desk -->
+    <div class="item poke" style="--rot:3deg" data-full="assets/mozart-desk.jpg" data-cap="co-working">
+      <div class="clip"></div>
+      <div class="flip">
+        <div class="pf"><div class="frame"><div class="ph"><img src="assets/mozart-desk.jpg" alt="coding next to Mozart the cat" loading="lazy"></div><div class="cap">co-working</div></div></div>
+        <div class="pf pb"><div class="frame"><div class="t">co-working</div><div class="b">my most loyal coworker. he's super cute too</div></div></div>
+      </div>
+    </div>
+
+    <!-- cardboard bridge -->
+    <div class="item poke" style="--rot:2deg" data-full="assets/beamlab.jpg" data-cap="civ class">
+      <div class="clip"></div>
+      <div class="flip">
+        <div class="pf"><div class="frame"><div class="ph"><img src="assets/beamlab.jpg" alt="cardboard bridge load test" loading="lazy"></div><div class="cap">civ class</div></div></div>
+        <div class="pf pb"><div class="frame"><div class="t">civ class</div><div class="b">in a team of 3, we made a cardboard bridge to support a train. we made our own simulation engine to calculate the forces of the train :) here's the <a href="https://drive.google.com/file/d/1G7xopXXaNuQIIu_UXdR6EyZvIapV8cbK/view?usp=drive_link" target="_blank" rel="noopener" style="color:var(--sage-bright);font-weight:700;text-decoration:none;border-bottom:1px dotted var(--sage-bright)" onclick="event.stopPropagation()">design report</a></div></div></div>
+      </div>
+    </div>
+
+
+    <!-- extras (relabel / remove as you like) -->
+    <div class="item poke" style="--rot:2deg" data-full="assets/extra-2.jpg" data-cap="demoing in Japan">
+      <div class="clip"></div>
+      <div class="flip">
+        <div class="pf"><div class="frame"><div class="ph"><img src="assets/extra-2.jpg" alt="demoing RC car in Japan" loading="lazy"></div><div class="cap">demoing in Japan</div></div></div>
+        <div class="pf pb"><div class="frame"><div class="t">demoing in Japan</div><div class="b">was flown out to demo my RC car build</div></div></div>
+      </div>
+    </div>
+    <!-- cat houses (project) -->
+    <div class="item poke" style="--rot:-2.5deg" data-full="assets/cardboard.jpg" data-cap="cardboard box cat houses">
+      <div class="clip"></div>
+      <div class="flip">
+        <div class="pf"><div class="frame"><div class="ph"><img src="assets/cardboard.jpg" alt="cardboard cat houses I built" loading="lazy"></div><div class="cap">cardboard box cat houses</div></div></div>
+        <div class="pf pb"><div class="frame"><div class="t">cardboard box cat houses</div><div class="b">built these out of cardboard when i was about 7</div></div></div>
+      </div>
+    </div>
+
+    <!-- new pictures (caption these) -->
+    <div class="item poke" style="--rot:-3deg" data-full="assets/discharge-pulse.jpg" data-cap="discharge pulse">
+      <div class="clip"></div>
+      <div class="flip">
+        <div class="pf"><div class="frame"><div class="ph"><img src="assets/discharge-pulse.jpg" alt="discharge pulse plot" loading="lazy"></div><div class="cap">discharge pulse</div></div></div>
+        <div class="pf pb"><div class="frame"><div class="t">discharge pulse</div><div class="b">LOTS (and i mean lots) of breadboarding to collect battery data for my EKF project</div></div></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer class="foot">&copy; 2026 Sasha Przybylski</footer>
+
+<!-- lightbox -->
+<div class="lb" id="lb" aria-hidden="true">
+  <button class="x" id="lbClose" aria-label="close">✕</button>
+  <figure>
+    <img id="lbImg" src="" alt="">
+    <figcaption id="lbCap"></figcaption>
+  </figure>
+</div>
+
+<script>
+(function(){
+  var lb=document.getElementById('lb'),
+      lbImg=document.getElementById('lbImg'),
+      lbCap=document.getElementById('lbCap');
+  function open(src,cap){
+    lbImg.src=src; lbImg.alt=cap||''; lbCap.textContent=cap||'';
+    lb.classList.add('open'); lb.setAttribute('aria-hidden','false');
+  }
+  function close(){ lb.classList.remove('open'); lb.setAttribute('aria-hidden','true'); lbImg.src=''; }
+
+  document.querySelectorAll('.item[data-full]').forEach(function(el){
+    el.addEventListener('click',function(){ open(el.dataset.full, el.dataset.cap); });
+  });
+  lb.addEventListener('click',close);
+  document.getElementById('lbClose').addEventListener('click',close);
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') close(); });
+
+  // touch: tap a project polaroid to flip instead of zoom (no hover on touch)
+  if(window.matchMedia('(hover: none)').matches){
+    document.querySelectorAll('.item.poke').forEach(function(el){
+      el.addEventListener('click',function(e){ e.stopImmediatePropagation(); el.classList.toggle('flipped'); },true);
+    });
+  }
+})();
+</script>
+
+</body>
+</html>
