@@ -64,14 +64,14 @@
   .links a:hover{color:var(--sage-bright);border-color:var(--sage-bright)}
 
   /* ---- zone labels ---- */
-  .zonelabel{max-width:1180px;margin:34px auto 0;padding:0 6vw;
+  .zonelabel{max-width:1180px;margin:20px auto 0;padding:0 6vw;
     display:flex;align-items:center;gap:14px;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--ink-soft)}
   .zonelabel::after{content:"";flex:1;height:1px;background:var(--ink-soft);opacity:.3}
   .zonelabel .n{color:var(--sage);font-weight:700}
 
   /* ---- ZONE 1 — past projects (large project cards) ---- */
-  .work{max-width:1180px;margin:20px auto 0;padding:0 6vw;position:relative;z-index:5}
-  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .work{max-width:1180px;margin:12px auto 0;padding:0 6vw;position:relative;z-index:5}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
   .proj{background:var(--card);border:1.5px solid var(--ink);box-shadow:5px 6px 0 var(--shadow);
     display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s;position:relative}
   .cardlink{position:absolute;inset:0;z-index:1}
@@ -82,15 +82,15 @@
   .shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
   .shot .tagk{position:absolute;top:10px;left:10px;z-index:2;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;
     color:var(--sage);font-weight:700;background:var(--card);padding:3px 7px;border:1px solid var(--ink)}
-  .body{padding:18px 18px 16px;display:flex;flex-direction:column;gap:9px;flex:1}
-  .ttl{font-size:16px;font-weight:700;line-height:1.15}
+  .body{padding:13px 16px 13px;display:flex;flex-direction:column;gap:6px;flex:1}
+  .ttl{font-size:15px;font-weight:700;line-height:1.15}
   .ttl .yr{color:var(--ink-soft);font-weight:400;font-size:12px}
-  .hard{font-size:11px;color:var(--ink-soft);line-height:1.55}
+  .hard{font-size:10.5px;color:var(--ink-soft);line-height:1.45}
   .hard b{color:var(--ink)}
-  .stat{font-family:"IBM Plex Mono",monospace;font-weight:700;font-size:13px;color:var(--sage);line-height:1.3;
-    border-left:3px solid var(--sage);padding-left:10px;margin-top:2px}
-  .cta{display:flex;gap:8px;flex-wrap:wrap;margin-top:auto;padding-top:6px;position:relative;z-index:2}
-  .btn{font-size:10.5px;font-weight:600;text-decoration:none;padding:6px 11px;border:1.5px solid var(--ink);
+  .stat{font-family:"IBM Plex Mono",monospace;font-weight:700;font-size:12px;color:var(--sage);line-height:1.25;
+    border-left:3px solid var(--sage);padding-left:9px;margin-top:1px}
+  .cta{display:flex;gap:8px;flex-wrap:wrap;margin-top:auto;padding-top:5px;position:relative;z-index:2}
+  .btn{font-size:10px;font-weight:600;text-decoration:none;padding:5px 10px;border:1.5px solid var(--ink);
     transition:.15s;display:inline-flex;align-items:center;gap:5px;color:var(--ink)}
   .btn.play{background:var(--sage);border-color:var(--sage);color:#fff}
   .btn.play:hover{background:var(--sage-bright)}
@@ -197,6 +197,9 @@
     background:none;border:none;cursor:pointer;line-height:1;opacity:.8}
   .lb .x:hover{opacity:1;color:var(--sage)}
 
+  @media(max-width:1000px){
+    .grid{grid-template-columns:repeat(2,1fr)}
+  }
   @media(max-width:780px){
     :root{--pw:150px;--ph:190px}
     .frame .cap{font-size:17px;min-height:42px}
@@ -216,7 +219,7 @@
   <div>
     <div class="name">hi i'm sasha <span class="dot">:)</span></div>
     <!-- rewrite this in your own voice anytime -->
-    <div class="narr">i build batteries, write control systems, and train ml models that beat published benchmarks. rn i'm researching at <b>matter lab</b> and building a bms from scratch!</div>
+    <div class="narr">i build batteries, write control systems, and train ml models that beat published benchmarks. rn i'm researching at <b>matter lab</b> and <b>building a bms</b> from scratch!</div>
   </div>
   <div class="links">
     <a href="https://www.youtube.com/@sashaprzybylski/videos" target="_blank" rel="noopener">youtube ↗</a><br>
@@ -232,32 +235,32 @@
 <section class="work">
   <div class="grid">
 
-    <!-- BREED 2.0 -->
-    <div class="proj">
-      <a class="cardlink" href="https://github.com/sashaprz/breed-2.0" target="_blank" rel="noopener" aria-label="BREED 2.0 on GitHub"></a>
-      <div class="shot"><span class="tagk">ml · materials</span><img src="assets/breed.jpg" alt="ionic conductivity research desk" loading="lazy"></div>
-      <div class="body">
-        <div class="ttl">BREED 2.0 — ML for solid-state electrolytes <span class="yr">'25</span></div>
-        <div class="hard">DFT screening of electrolytes is brutally slow. <b>The hard part:</b> predicting ionic conductivity from composition alone, with almost no labelled data. Built a gradient-boosted model + genetic algorithm to search the candidate space.</div>
-        <div class="stat">MAE ≈ 0.94 (log σ) on 829 samples<br>beats the published OBELiX RF baseline by 36%</div>
-        <div class="cta">
-          <a class="btn" href="https://github.com/sashaprz/breed-2.0" target="_blank" rel="noopener">&lt;/&gt; code</a>
-          <a class="btn" href="https://www.notion.so/sashaprz/BREED-Battery-Research-via-Evolutionary-Electrolyte-Design-256340b75472806aa0acd1900278998b" target="_blank" rel="noopener">writeup</a>
-        </div>
-      </div>
-    </div>
-
     <!-- EKF state-of-charge estimator -->
     <div class="proj">
       <a class="cardlink" href="https://youtu.be/EO3NNHc-09Y?si=TLiLmfUXTrCcwH-W" target="_blank" rel="noopener" aria-label="EKF build video"></a>
       <div class="shot"><span class="tagk">controls</span><img src="assets/soc.jpg" alt="state-of-charge estimation plot" loading="lazy"></div>
       <div class="body">
         <div class="ttl">EKF to estimate battery state-of-charge <span class="yr">'24</span></div>
-        <div class="hard">SOC isn't directly measureable, and voltage is noisy. An EKF uses a mathematical model of the battery, plus the voltage measurments, to return the most accurate SOC esitmation. I built my own equivalent circuit model, did a pulse discharge test, and built my own SOC-OCV curve. All with an Arduino and an 18650 LFP cell!</div>
+        <div class="hard">SOC can't be measured directly and voltage is noisy, so an EKF fuses a battery model with voltage readings for the best estimate. Built my own equivalent-circuit model, ran a pulse-discharge test, and derived the SOC-OCV curve — all on an Arduino with an 18650 LFP cell.</div>
         <div class="stat">nonlinear estimation, on-device</div>
         <div class="cta">
           <a class="btn play" href="https://youtu.be/EO3NNHc-09Y?si=TLiLmfUXTrCcwH-W" target="_blank" rel="noopener">▶ build video</a>
           <a class="btn" href="https://github.com/sashaprz/Estimating-Battery-SOC-with-an-Extended-Kalman-Filter" target="_blank" rel="noopener">&lt;/&gt; code</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- BREED 2.0 -->
+    <div class="proj">
+      <a class="cardlink" href="https://github.com/sashaprz/breed-2.0" target="_blank" rel="noopener" aria-label="BREED 2.0 on GitHub"></a>
+      <div class="shot"><span class="tagk">ml · materials</span><img src="assets/breed.jpg" alt="ionic conductivity research desk" loading="lazy"></div>
+      <div class="body">
+        <div class="ttl">BREED 2.0 — ML for solid-state electrolytes <span class="yr">'26</span></div>
+        <div class="hard">DFT screening is too slow, and there's almost no electrolyte data. So I used physics-based features, and combined a composition based model with a structural one to make the most of a small dataset (n=829). MAE ≈ 0.94 log σ — roughly an order of magnitude, which tells you screening, not precision.</div>
+        <div class="stat">beats the published OBELiX RF baseline by 36%</div>
+        <div class="cta">
+          <a class="btn play" href="https://github.com/sashaprz/breed-2.0" target="_blank" rel="noopener">&lt;/&gt; code</a>
+          <a class="btn" href="https://www.notion.so/sashaprz/BREED-Battery-Research-via-Evolutionary-Electrolyte-Design-256340b75472806aa0acd1900278998b" target="_blank" rel="noopener">writeup</a>
         </div>
       </div>
     </div>
