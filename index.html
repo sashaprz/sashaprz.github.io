@@ -85,7 +85,7 @@
   .body{padding:13px 16px 13px;display:flex;flex-direction:column;gap:6px;flex:1}
   .ttl{font-size:16.5px;font-weight:700;line-height:1.15;margin-bottom:7px}
   .ttl .yr{color:var(--ink-soft);font-weight:400;font-size:12px}
-  .hard{font-size:10.5px;color:var(--ink-soft);line-height:1.7;min-height:130px}
+  .hard{font-size:12.5px;color:var(--ink-soft);line-height:1.7;min-height:130px;letter-spacing:-.6px;padding:5px 0}
   .hard b{color:var(--ink)}
   .stat{font-family:"IBM Plex Mono",monospace;font-weight:700;font-size:12px;color:var(--sage);line-height:1.25;
     border-left:3px solid var(--sage);padding-left:9px;margin-top:1px}
@@ -256,7 +256,7 @@
       <div class="shot"><span class="tagk">ml · materials</span><img src="assets/breed.jpg" alt="ionic conductivity research desk" loading="lazy"></div>
       <div class="body">
         <div class="ttl">BREED 2.0 — ML for solid-state electrolytes <span class="yr">'26</span></div>
-        <div class="hard">DFT screening is too slow, and there's almost no electrolyte data. So I used physics-based features, and combined a composition based model with a structural one to make the most of a small dataset (n=829). MAE ≈ 0.94 log σ — roughly an order of magnitude, which tells you screening, not precision.</div>
+        <div class="hard">DFT screening is too slow, and there's almost no electrolyte data. So I used physics-based features, and combined a composition based model with a structural one to make the most of a small dataset (n=829). MAE ≈ 0.94 log σ.</div>
         <div class="stat">beats the published OBELiX RF baseline by 36%</div>
         <div class="cta">
           <a class="btn play" href="https://github.com/sashaprz/breed-2.0" target="_blank" rel="noopener">&lt;/&gt; code</a>
